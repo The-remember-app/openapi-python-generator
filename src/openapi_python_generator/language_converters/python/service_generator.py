@@ -37,7 +37,7 @@ def generate_body_param(operation: Operation) -> Union[str, None]:
         return None
     else:
         if isinstance(operation.requestBody, Reference):
-            return "data.dict()"
+            return "data.model_dump()"
 
         if operation.requestBody.content is None:
             return None  # pragma: no cover
@@ -51,7 +51,7 @@ def generate_body_param(operation: Operation) -> Union[str, None]:
             return None  # pragma: no cover
 
         if isinstance(media_type.media_type_schema, Reference):
-            return "data.dict()"
+            return "data.model_dump()"
         elif isinstance(media_type.media_type_schema, Schema):
             schema = media_type.media_type_schema
             if schema.type == "array":
