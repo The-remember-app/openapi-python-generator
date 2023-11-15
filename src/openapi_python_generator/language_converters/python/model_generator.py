@@ -4,9 +4,9 @@ from typing import List
 from typing import Optional
 
 import click
-from openapi_schema_pydantic import Components
-from openapi_schema_pydantic import Reference
-from openapi_schema_pydantic import Schema
+from openapi_pydantic import Components
+from openapi_pydantic import Reference
+from openapi_pydantic import Schema
 
 from openapi_python_generator.language_converters.python import common
 from openapi_python_generator.language_converters.python.jinja_config import (
