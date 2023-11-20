@@ -1,6 +1,6 @@
 import itertools
 import re
-from typing import List
+from typing import List, Any
 from typing import Optional
 
 import click
@@ -194,11 +194,21 @@ def _generate_property_from_schema(
         and parent_schema.required is not None
         and name in parent_schema.required
     )
+
+    default: Any = None
+    if required is False:
+        if schema.default is None:
+            default = "None"
+        elif isinstance(schema.default, str):
+            default = f"'{schema.default}'"
+        else:
+            default = f"{schema.default}"
+
     return Property(
         name=name,
         type=type_converter(schema, required, model_name),
         required=required,
-        default=None if required else "None",
+        default=default,
     )
 
 
